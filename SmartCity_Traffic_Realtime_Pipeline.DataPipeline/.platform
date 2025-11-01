@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "SmartCity_Traffic_Realtime_Pipeline"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8ae78fb7-362f-928e-4144-786e318c698c"
+  }
+}

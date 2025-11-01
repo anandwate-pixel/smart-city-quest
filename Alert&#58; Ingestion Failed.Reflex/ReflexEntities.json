@@ -1,0 +1,154 @@
+[
+  {
+    "uniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032",
+    "payload": {
+      "name": "SmartCity_Environment_Real-time_Dashboard",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "8b6722f9-0f42-4d2d-9aa7-7f9782945a4f",
+    "payload": {
+      "name": "SmartCity_Environment_Realtime event",
+      "runSettings": {
+        "executionIntervalInSeconds": 300
+      },
+      "query": {
+        "queryString": "let weatherIngestion = weather_realtimehub\n| summarize IngestionCount=count(), LastIngestionTime=max(dateTime) by Table=\"weather_realtimehub\";\nlet trafficIngestion = traffic_realtime_table\n| summarize IngestionCount=count(), LastIngestionTime=max(dateTime) by Table=\"traffic_realtime_table\";\nlet weatherApiIngestion = weatherapi_realtime_table\n| summarize IngestionCount=count(), LastIngestionTime=max(localtime) by Table=\"weatherapi_realtime_table\";\nweatherIngestion\n| union trafficIngestion\n| union weatherApiIngestion\n| project Table, IngestionCount, LastIngestionTime"
+      },
+      "eventhouseItem": {
+        "itemId": "a7aba76b-e64f-b2df-44f0-dec7ce8448ba",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "17b733fc-1594-4387-b79c-380cc4bad913",
+        "measureName": "IngestionCount",
+        "dashboardId": "571360d8-0835-42b9-882f-641050472841",
+        "visualId": "1a20c165-9fc8-45c2-8e85-3bf1006a7aa7"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "c26f686f-e457-438f-9382-9ea11299b2b3",
+    "payload": {
+      "name": "SmartCity_Environment_Realtime event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"SourceEventStep\",\"id\":\"ffc02de3-53c0-4e32-bdfe-7f54132a6f3f\",\"rows\":[{\"name\":\"SourceSelector\",\"kind\":\"SourceReference\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"8b6722f9-0f42-4d2d-9aa7-7f9782945a4f\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "1bb73bd5-43a8-41a9-8d08-8acdbd1e2411",
+    "payload": {
+      "name": "Table",
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Object"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "b9cab20b-bb5d-47a6-84f3-9e871b03b09e",
+    "payload": {
+      "name": "Table",
+      "parentObject": {
+        "targetUniqueIdentifier": "1bb73bd5-43a8-41a9-8d08-8acdbd1e2411"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\":\"IdentityPartAttribute\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"IdPartStep\",\"id\":\"685724bc-2297-4664-b3a9-533f6e0532ca\",\"rows\":[{\"name\":\"TypeAssertion\",\"kind\":\"TypeAssertion\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "a5e48e94-1921-4c26-b14d-35b6cb105f42",
+    "payload": {
+      "name": "Table tuple",
+      "parentObject": {
+        "targetUniqueIdentifier": "1bb73bd5-43a8-41a9-8d08-8acdbd1e2411"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\":\"IdentityTupleAttribute\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"IdStructureStep\",\"id\":\"b91fc17f-1ec3-42ae-9f31-a28ec4e12190\",\"rows\":[{\"name\":\"IdPart\",\"kind\":\"IdPart\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b9cab20b-bb5d-47a6-84f3-9e871b03b09e\"}],\"name\":\"idPart\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "9651a502-8bc2-4546-b925-fb92c731bb1f",
+    "payload": {
+      "name": "SmartCity_Environment_Realtime event by Table",
+      "parentObject": {
+        "targetUniqueIdentifier": "1bb73bd5-43a8-41a9-8d08-8acdbd1e2411"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\":\"SplitEvent\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"SplitEventStep\",\"id\":\"92a6d430-03e9-41fe-8841-8f9dd61a06a2\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"c26f686f-e457-438f-9382-9ea11299b2b3\"}],\"name\":\"event\"}]},{\"name\":\"FieldIdMapping\",\"kind\":\"FieldIdMapping\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Table\"},{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b9cab20b-bb5d-47a6-84f3-9e871b03b09e\"}],\"name\":\"idPart\"}]},{\"name\":\"SplitEventOptions\",\"kind\":\"EventOptions\",\"arguments\":[{\"name\":\"isAuthoritative\",\"type\":\"boolean\",\"value\":true}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "912fe0f6-74d4-4f0c-aa79-0dc730d03e63",
+    "payload": {
+      "name": "IngestionCount",
+      "parentObject": {
+        "targetUniqueIdentifier": "1bb73bd5-43a8-41a9-8d08-8acdbd1e2411"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Attribute",
+        "instance": "{\"templateId\":\"BasicEventAttribute\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"EventSelectStep\",\"id\":\"38c11e0a-98da-4402-8da1-3b6d0ed133c7\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"9651a502-8bc2-4546-b925-fb92c731bb1f\"}],\"name\":\"event\"}]},{\"name\":\"EventFieldSelector\",\"kind\":\"EventField\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"IngestionCount\"}]}]},{\"name\":\"EventComputeStep\",\"id\":\"6fd3ebd8-31b6-4dfb-89be-4644b6f02595\",\"rows\":[{\"name\":\"TypeAssertion\",\"kind\":\"TypeAssertion\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"Text\"},{\"name\":\"format\",\"type\":\"string\",\"value\":\"\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "b9d788ba-ab77-4eba-bad8-3b84b95bfe3c",
+    "payload": {
+      "name": "SmartCity_Environment_Realtime alert",
+      "parentObject": {
+        "targetUniqueIdentifier": "1bb73bd5-43a8-41a9-8d08-8acdbd1e2411"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "d0ac97aa-3b50-457b-8806-0e1e0e450032"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"AttributeTrigger\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"ScalarSelectStep\",\"id\":\"7ea92072-4f8a-447b-9cce-b9bce8cdd40f\",\"rows\":[{\"name\":\"AttributeSelector\",\"kind\":\"Attribute\",\"arguments\":[{\"kind\":\"AttributeReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"912fe0f6-74d4-4f0c-aa79-0dc730d03e63\"}],\"name\":\"attribute\"}]}]},{\"name\":\"ScalarDetectStep\",\"id\":\"c270a9cd-3f4a-4078-a9c1-a3a8bb98ffe5\",\"rows\":[{\"name\":\"NumberValueCondition\",\"kind\":\"NumberValueCondition\",\"arguments\":[{\"name\":\"op\",\"type\":\"string\",\"value\":\"IsEqualTo\"},{\"name\":\"threshold\",\"type\":\"number\",\"value\":0.0}]},{\"name\":\"OccurrenceOption\",\"kind\":\"EachTime\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"d77ca8c9-6021-4a2c-bfa5-0aeefd5d92c8\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"JerlinLourds@PublicisSapient163.onmicrosoft.com\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator Trigger: New event from SmartCity_Environment_Realtime alert\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"New event from SmartCity_Environment_Realtime alert\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDashboard",
+    "displayName": "SmartCity_Environment_Real-time_Dashboard",
+    "description": "SmartCity_Environment_Real-time_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "50472841-6410-882f-42b9-0835571360d8"
+  }
+}

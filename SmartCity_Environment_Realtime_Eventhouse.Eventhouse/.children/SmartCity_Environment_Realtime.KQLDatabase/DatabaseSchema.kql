@@ -1,0 +1,7 @@
+// KQL script
+// Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
+
+
+.create-merge table weatherapi_realtime_table (geo_point_name:string, location_name:string, location_region:string, location_country:string, location_lat:string, location_lon:string, location_tz_id:string, localtime:string, temp_c:string, condition_text:string, wind_kph:string, humidity:string, air_quality_co:string, air_quality_no2:string, air_quality_pm25:string, air_quality_pm10:string, timestamp_millis:long) 
+.create-merge table traffic_realtime_table (City:string, Latitude:real, Longitude:real, AverageSpeed_kmph:long, CongestionIndex_percent:real, PeakHourDelay_mins:real, dateTime:string, timestamp_millis:long) 
+.create-merge table weather_realtimehub (dateTime:string, description:string, iconCode:dynamic, hasPrecipitation:bool, temperature:dynamic, realFeelTemperature:dynamic, realFeelTemperatureShade:dynamic, relativeHumidity:long, dewPoint:dynamic, wind:dynamic, windGust:dynamic, uvIndex:long, uvIndexDescription:string, visibility:dynamic, obstructionsToVisibility:string, cloudCover:long, cloudCeiling:dynamic, pressure:dynamic, pressureTendency:dynamic, pastTwentyFourHourTemperatureDeparture:string, apparentTemperature:dynamic, windChillTemperature:dynamic, wetBulbTemperature:dynamic, precipitationSummary:dynamic, temperatureSummary:dynamic, daytime:bool, location:dynamic) 

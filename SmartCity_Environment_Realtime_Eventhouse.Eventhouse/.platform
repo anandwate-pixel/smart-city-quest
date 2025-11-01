@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventhouse",
+    "displayName": "SmartCity_Environment_Realtime_Eventhouse",
+    "description": "SmartCity_Environment_Realtime"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "36a69f41-78e8-8c7d-4e6c-db455f48362f"
+  }
+}

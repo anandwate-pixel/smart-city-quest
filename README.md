@@ -9,7 +9,7 @@ The project aims at gathering the Weather and Traffic data for selective 5 citie
 ***
 
 ## Project Components & Setup
-***
+****
 ### Environments
 
 ### Dev Workspace
